@@ -1,63 +1,85 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Nicolas Nonnengiesser</title>
-    <meta name="description" content="I’m a computer science student by day, creative mind by night, and this is my website. 
-I live in Frankfurt, have a collection of keyboards, and I like good music.
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-I graduated from Goethe University Frankfurt advised by Visvanathan Ramesh.
-Currently pursuing my masters degree in Autonomous Systems  at  TU Darmstadt.
+    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
+    {% if meta.description %}
+        <meta name="description" content="{{ meta.description|striptags }}" />
+    {% endif %}
+    {% if meta.robots %}
+        <meta name="robots" content="{{ meta.robots }}" />
+    {% endif %}
 
-Apart from that I work part-time at DB Systel with databases.">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png?h=97f60f134d1770dbae9561143eca7489">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png?h=5ed59a0023f9cfed6767a69a36e679d9">
-    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/apple-touch-icon.png?h=97f60f134d1770dbae9561143eca7489">
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/android-chrome-192x192.png?h=a8b0c474c93d32027d955615ec6b632a">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/android-chrome-512x512.png?h=4a2925fa019ae477fa0bb7e9516c838d">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="/assets/css/styles.min.css?h=2f40fdac608782dd77df33a8164b02b8">
+    {% if current_page %}
+        <link rel="canonical" href="{{ current_page.url }}" />
+    {% endif %}
+
+    <link rel="stylesheet" href="{{ theme_url }}/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="{{ theme_url }}/css/droidsans.css" type="text/css" />
+    <link rel="stylesheet" href="{{ theme_url }}/css/fontello.css" type="text/css" />
 </head>
-<body class="text-light" style="background-color: #282a36;font-family: 'Fira Sans', sans-serif;">
-    <div style="margin-top: 42px;">
-        <div class="container" style="max-width: 956px;">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-dark navbar-expand-md sticky-top border-info border rounded-0" style="margin-top: 21px;">
-                        <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><span class="text-success">nicolasnonnengiesser@codecaviar</span>
-                            <span
-                                class="text-light">:</span><span class="text-info" style="color: rgb(231,172,83);">/</span><span class="text-light" style="color: rgb(231,172,83);">$</span>
-                                <div class="collapse navbar-collapse" id="navcol-1">
-                                    <ul class="nav navbar-nav">
-                                        <li class="nav-item" role="presentation"><a class="nav-link active" href="/index.html">home</a></li>
-                                        <li class="nav-item" role="presentation"><a class="nav-link" href="/projects.html">projects</a></li>
-                                        <li class="nav-item" role="presentation"><a class="nav-link" href="/blog.html">blog</a></li>
-                                    </ul>
-                                </div>
-                        </div>
-                    </nav>
+<body{% if config.theme_config.widescreen %} class="widescreen"{% endif %}>
+
+    <div id="header" role="banner">
+        <div class="container">
+            <a id="nav-toggle" title="Toggle Menu" role="button" aria-controls="nav" aria-expanded="false" tabindex="1">
+                <span class="icon-menu" aria-hidden="true"></span>
+                <span class="sr-only">Toggle Menu</span>
+            </a>
+            {% if pages["_meta"].meta.logo %}
+                <div id="logo" aria-hidden="true">
+                    <a href="{{ "index"|link }}">
+                        <img src="{{ pages["_meta"].meta.logo|url }}" alt="" />
+                    </a>
                 </div>
+            {% endif %}
+            <div id="title"{{ pages["_meta"].meta.tagline ? ' class="tagline"' }}>
+                <a href="{{ "index"|link }}">
+                    <h1>{{ site_title }}</h1>
+                    {{ pages["_meta"].meta.tagline|markdown }}
+                </a>
             </div>
-            <div class="row" style="margin-top: 21px;">
-                <div class="col">
-                    <article>
-                        <h2 class="text-info border-info border-bottom">Welcome to my website!</h2>
-                        <p>I’m a computer science student by day, creative mind by night, and this is my website. <br>I live&nbsp;in&nbsp;Frankfurt, have a collection of keyboards, and I like good music.<br><br>I graduated from Goethe University Frankfurt
-                            advised by&nbsp;<a href="http://www.ccc.cs.uni-frankfurt.de/people/">Visvanathan Ramesh</a>.<br>Currently pursuing my masters degree in&nbsp;<a href="https://www.tu-darmstadt.de/studieren/studieninteressierte/studienangebot_studiengaenge/studiengang_181440.en.jsp">Autonomous Systems</a>                            at&nbsp;<a href="https://www.tu-darmstadt.de/">TU Darmstadt</a>.<br><br>Apart from that I work part-time at&nbsp;<a href="https://www.dbsystel.de/dbsystel">DB Systel</a>&nbsp;with databases.</p>
-                    </article>
-                    <article>
-                        <h2 class="text-info border-info border-bottom">You can find me at</h2>
-                        <p></p>
-                    </article><a class="text-white" href="https://www.linkedin.com/in/nicolas-nonnengie%C3%9Fer-b071a5167/" target="_blank"><i class="fab fa-linkedin" style="font-size: 65px;"></i></a><a class="text-white" href="https://twitter.com/nonnengiesser"
-                        target="_blank"><i class="fab fa-twitter-square" style="font-size: 65px;margin-right: 0;padding-right: 0;padding-left: 0;margin-left: 21px;"></i></a></div>
+            <div id="nav" role="navigation" tabindex="-1">
+                <ul>
+                    {% for page in pages(depthOffset=-1) if page.title and not page.hidden %}
+                        <li{% if page.id == current_page.id %} class="active"{% endif %}>
+                            <a href="{{ page.url }}">{{ page.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+    <div id="main" role="main">
+        <div class="container">
+            {{ content }}
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <div class="social">
+                {% for social in pages["_meta"].meta.social %}
+                    <a href="{{ social.url }}" title="{{ social.title }}" role="button">
+                        <span class="icon-{{ social.icon }}" aria-hidden="true"></span>
+                        <span class="sr-only">{{ social.title }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+            <p>
+                <a href="http://picocms.org/">Pico</a> was made by <a href="http://gilbert.pellegrom.me">Gilbert Pellegrom</a>
+                and is maintained by <a href="https://github.com/picocms/Pico/graphs/contributors">The Pico Community</a>.
+                Released under the <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md">MIT license</a>.
+            </p>
+        </div>
+    </div>
+
+    <script src="{{ theme_url }}/js/modernizr-3.3.1-custom.min.js" type="text/javascript"></script>
+    <script src="{{ theme_url }}/js/utils.js" type="text/javascript"></script>
+    <script src="{{ theme_url }}/js/pico.js" type="text/javascript"></script>
+
 </body>
 </html>
